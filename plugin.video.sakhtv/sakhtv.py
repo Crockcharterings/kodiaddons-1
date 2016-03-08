@@ -67,6 +67,55 @@ def f_sha(str):
 def getString(string_id):
 	return addon.getLocalizedString(string_id)
 	
+def getLink(links, preferred):
+	mylinks = {}
+	for i in links:
+		if i['ql'] == preferred:
+			return i['src']
+		else:
+			mylinks.update({i['ql']:i['src']})
+	if preferred == "1080p":
+		try:
+			return mylinks["720p"]
+		except:
+			pass
+		try:
+			return mylinks["480p"]
+		except:
+			pass
+		try:
+			return mylinks["360p"]
+		except:
+			pass
+	if preferred == "720p":
+		try:
+			return mylinks["480p"]
+		except:
+			pass
+		try:
+			return mylinks["360p"]
+		except:
+			pass
+		try:
+			return mylinks["1080p"]
+		except:
+			pass
+	if preferred == "480p":
+		try:
+			return mylinks["360p"]
+		except:
+			pass
+		try:
+			return mylinks["720p"]
+		except:
+			pass
+		try:
+			return mylinks["1080p"]
+		except:
+			pass
+	for i in mylinks:
+		return mylinks[i]
+	
 def dump(obj):
 	newobj=obj
 	if '__dict__' in dir(obj):
@@ -169,6 +218,7 @@ elif params['mode'] == "episodes":
 		list_item = xbmcgui.ListItem("%s" % (i['index'] + "x" + params['season'] + " " + i['name']))
 		list_item.setInfo ("video", {"Episode": i['index'], 'TVShowTitle':'TVShowTitle', 'Aired': i['date']})
 		list_item.setArt({'thumb': 'https://sakh.tv/' + i['preview']})
-		xbmcplugin.addDirectoryItem(addon_id, i['files'][1]['src'], list_item, isFolder=False)
+		link = getLink(i['files'], addon.getSetting('quality') + "p")
+		xbmcplugin.addDirectoryItem(addon_id, link, list_item, isFolder=False)
 
 xbmcplugin.endOfDirectory(addon_id, cacheToDisc=True)
