@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.sakhtv" version="1.0.0" name="Sakh.tv" provider-name="Федор Одинцов">
+<requires>
+  <import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="sakhtv.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata"> 
+  <summary lang="en">Online-series from Sakh.tv</summary>
+  <summary lang="ru">Онлайн-сериалы с Sakh.tv</summary>
+  <description lang="en">Add-on for watching TV-series online from Sakht.tv</description>
+  <description lang="ru">Дополнение для онлайн-просмотра сериалов с сайта Sakh.tv.</description>
+  <disclaimer lang="en">You must fill in login/password in settings dialog</disclaimer>
+  <disclaimer lang="ru">Обязательно введите логин/пароль в настройках.</disclaimer>
+  <platform>all</platform>
+  <language>en ru</language>
+  <email>fadmin@list.ru</email>
+</extension>
+</addon>

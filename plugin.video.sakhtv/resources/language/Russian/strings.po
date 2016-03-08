@@ -1,0 +1,75 @@
+# XBMC Media Center language file
+msgid ""
+msgstr ""
+
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+
+msgctxt "#32001"
+msgid "Common"
+msgstr "Общие"
+
+msgctxt "#32011"
+msgid "login"
+msgstr "Логин"
+
+msgctxt "#32012"
+msgid "password"
+msgstr "Пароль"
+
+msgctxt "#32013"
+msgid "Video quality"
+msgstr "Качество видео"
+
+msgctxt "#32014"
+msgid "Error"
+msgstr "Ошибка"
+
+msgctxt "#32015"
+msgid "Your IP-address is not in range of Sakhalin."
+msgstr "Ваш IP-адрес не из сахалинского диапазона. Дальнейшая работа невозможна."
+
+msgctxt "#32016"
+msgid "Authentification error. Fill in correct credentials."
+msgstr "Ошибка авторизации. Заполните корректные данные для входа."
+
+msgctxt "#32017"
+msgid "Favorites"
+msgstr "Избранные"
+
+msgctxt "#32018"
+msgid "Search"
+msgstr "Поиск"
+
+msgctxt "#32019"
+msgid "Connection error. Try again later."
+msgstr "Ошибка связи. Попробуйте позже."
+
+msgctxt "#32020"
+msgid "Alphabet order"
+msgstr "По алфавиту"
+
+msgctxt "#32021"
+msgid "Popular"
+msgstr "Популярные"
+
+msgctxt "#32022"
+msgid "New"
+msgstr "Новые"
+
+msgctxt "#32023"
+msgid "Next page"
+msgstr "Следующая страница"
+
+msgctxt "#32024"
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+msgctxt "#32025"
+msgid "season"
+msgstr "сезон"
+
+msgctxt "#32026"
+msgid "Number of elements on page"
+msgstr "Кол-во элементов на странице"

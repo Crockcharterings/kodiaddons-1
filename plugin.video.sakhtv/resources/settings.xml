@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32001">
+        <setting id="user"     type="text"      label="32011"   default=""/>
+        <setting id="password" type="text"      label="32012"   default=""     option="hidden"  enable="!eq(-1,)"/>
+		<setting id="token"    type="text"                      default=""     visible="false"      />
+        <setting               type="sep"/>
+		<setting id="quality"  type="labelenum" label="32013"   default="720"  values="360|480|720|1080"  />
+		<setting id="amount"   type="slider"    label="32026"   default="30"   range="10,5,200" option="int" />
+    </category>
+</settings>

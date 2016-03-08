@@ -1,0 +1,75 @@
+# XBMC Media Center language file
+msgid ""
+msgstr ""
+
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+
+msgctxt "#32001"
+msgid "Common"
+msgstr ""
+
+msgctxt "#32011"
+msgid "login"
+msgstr ""
+
+msgctxt "#32012"
+msgid "password"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Video quality"
+msgstr ""
+
+msgctxt "#32014"
+msgid "Error"
+msgstr ""
+
+msgctxt "#32015"
+msgid "Your IP-address is not in range of Sakhalin."
+msgstr ""
+
+msgctxt "#32016"
+msgid "Authentification error. Fill in correct credentials."
+msgstr ""
+
+msgctxt "#32017"
+msgid "Favorites"
+msgstr ""
+
+msgctxt "#32018"
+msgid "Search"
+msgstr ""
+
+msgctxt "#32019"
+msgid "Connection error. Try again later."
+msgstr ""
+
+msgctxt "#32020"
+msgid "Alphabet order"
+msgstr ""
+
+msgctxt "#32021"
+msgid "Popular"
+msgstr ""
+
+msgctxt "#32022"
+msgid "New"
+msgstr ""
+
+msgctxt "#32023"
+msgid "Next page"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Previous page"
+msgstr ""
+
+msgctxt "#32025"
+msgid "season"
+msgstr ""
+
+msgctxt "#32026"
+msgid "Number of elements on page"
+msgstr ""
