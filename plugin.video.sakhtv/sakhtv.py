@@ -82,7 +82,7 @@ addon_id   =   int(sys.argv[1])
 addon_url  =   sys.argv[0]
 addon_icon =   addon.getAddonInfo('icon') 
 
-xbmc.log("parameters: %s" % dump(get_params()), level=xbmc.LOGNOTICE)
+#xbmc.log("parameters: %s" % dump(get_params()), level=xbmc.LOGNOTICE)
 
 user   = addon.getSetting('user')
 token  = addon.getSetting('token')
@@ -91,14 +91,12 @@ amount = int(addon.getSetting('amount'));
 params = get_params()
 # Вызов плагина без параметров
 if params == []: 
-	#xbmc.executebuiltin('Notification(%s,%s)' % ("!!!", "Бля"))
 	#Проверка IP
 	if getHTML('https://api.sakh.tv/v2/auth.iptest/')['result'] != True:
 		dialog = xbmcgui.Dialog()
 		ok = dialog.ok(getString(32014), getString(32015)) # "Error" "Your IP-address is not in range of Sakhalin."
 		raise SystemExit(1)
 		
-	#user       =   addon.getSetting('user');
 	password   =   addon.getSetting('password');
 	if user == "":
 		addon.openSettings()
@@ -132,29 +130,12 @@ if params == []:
 	list_item = xbmcgui.ListItem(getString(32022), iconImage=addon_icon) # "New"
 	xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=new&page=0&amount=%s&' % amount, list_item, isFolder=True)
 	
-elif params['mode'] == "favorites":
+elif params['mode'] in ['abc', 'pop', 'new', 'favorites']:
 	xbmcplugin.setContent(addon_id, 'TVShows')
-	series = getHTML('https://api.sakh.tv/v2/favorites.get/?user=%s&token=%s&page=%s&amount=%s' % (user, token, params['page'], amount))
-	
-	if int(params["page"]) > 0:
-		list_item = xbmcgui.ListItem('[COLOR=FF8888FF]%s[/COLOR]' % getString(32024), iconImage=None) # "Previous page"
-		xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=favorites&page=%s&amount=%s&' % (int(params["page"])-1, amount), list_item, isFolder=True)
-	for i in series["data"]:
-		fullName = i["name"].encode('utf-8')
-		if i["ename"] != "":
-			fullName = fullName + ('[COLOR=FF444444] - ' + i["ename"] + '[/COLOR]').encode('utf-8')
-		list_item = xbmcgui.ListItem("%s" % fullName, iconImage=addon_icon)
-		list_item.setInfo ("video", {"Genre": i['genre'].encode('utf-8'), 'Episode' : i['episodes_amount'], 'Plot': i['about'].encode('utf-8'), 'TVShowTitle':'TVShowTitle', 'Year': i['year']}) # , 
-		list_item.setArt({'thumb': i['poster'], 'fanart': i['backdrop']})
-		xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=seasons&serial_id=%s' % i['id'], list_item, isFolder=True)
-	xbmc.log(": %s %s %s" % (int(series['total']), int(params["page"]), amount), level=xbmc.LOGNOTICE)
-	if int(series['total']) > (int(params["page"]) + 1 ) * amount :
-		list_item = xbmcgui.ListItem('[COLOR=FF8888FF]%s[/COLOR]' % getString(32023), iconImage=None) # "Next page"
-		xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=favorites&page=%s&amount=%s&' % (int(params["page"])+1, amount), list_item, isFolder=True)
-		
-elif params['mode'] in ['abc', 'pop', 'new']:
-	xbmcplugin.setContent(addon_id, 'TVShows')
-	series = getHTML('https://api.sakh.tv/v2/serials.get/?user=%s&token=%s&page=%s&amount=%s&sort=%s' % (user, token, params['page'], amount, params['mode']))
+	if params['mode'] == 'favorites':
+		series = getHTML('https://api.sakh.tv/v2/favorites.get/?user=%s&token=%s&page=%s&amount=%s' % (user, token, params['page'], amount))
+	else:
+		series = getHTML('https://api.sakh.tv/v2/serials.get/?user=%s&token=%s&page=%s&amount=%s&sort=%s' % (user, token, params['page'], amount, params['mode']))
 	
 	if int(params["page"]) > 0:
 		list_item = xbmcgui.ListItem('[COLOR=FF8888FF]%s[/COLOR]' % getString(32024), iconImage=None) # "Previous page"
@@ -167,7 +148,7 @@ elif params['mode'] in ['abc', 'pop', 'new']:
 		list_item.setInfo ("video", {"Genre": i['genre'].encode('utf-8'), 'Episode' : i['episodes_amount'], 'Plot': i['about'].encode('utf-8'), 'TVShowTitle':i['ename'], 'Year': i['year'], 'Rating': i['rating']})
 		list_item.setArt({'thumb': i['poster'], 'fanart': i['backdrop'], 'poster': i['poster']})
 		xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=seasons&serial_id=%s' % i['id'], list_item, isFolder=True)
-	xbmc.log('%s - %s - %s' % (int(series['total']), (int(params["page"]) + 1), amount), xbmc.LOGNOTICE)
+	#xbmc.log('%s - %s - %s' % (int(series['total']), (int(params["page"]) + 1), amount), xbmc.LOGNOTICE)
 	if int(series['total']) > (int(params["page"]) + 1) * amount :
 		list_item = xbmcgui.ListItem('[COLOR=FF8888FF]%s[/COLOR]' % getString(32023), iconImage=None) # "Next page"
 		xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=%s&page=%s&amount=%s&' % (params['mode'], int(params["page"])+1, amount), list_item, isFolder=True)
