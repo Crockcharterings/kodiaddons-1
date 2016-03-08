@@ -164,8 +164,8 @@ elif params['mode'] in ['abc', 'pop', 'new']:
 		if i['ename'] != '':
 			fullName = fullName + ('[COLOR=FF444444] - ' + i["ename"] + '[/COLOR]').encode('utf-8')
 		list_item = xbmcgui.ListItem("%s" % fullName, iconImage=addon_icon)
-		list_item.setInfo ("video", {"Genre": i['genre'].encode('utf-8'), 'Episode' : i['episodes_amount'], 'Plot': i['about'].encode('utf-8'), 'TVShowTitle':'TVShowTitle', 'Year': i['year']}) # , 
-		list_item.setArt({'thumb': i['poster'], 'fanart': i['backdrop']})
+		list_item.setInfo ("video", {"Genre": i['genre'].encode('utf-8'), 'Episode' : i['episodes_amount'], 'Plot': i['about'].encode('utf-8'), 'TVShowTitle':i['ename'], 'Year': i['year'], 'Rating': i['rating']})
+		list_item.setArt({'thumb': i['poster'], 'fanart': i['backdrop'], 'poster': i['poster']})
 		xbmcplugin.addDirectoryItem(addon_id, addon_url + '?mode=seasons&serial_id=%s' % i['id'], list_item, isFolder=True)
 	xbmc.log('%s - %s - %s' % (int(series['total']), (int(params["page"]) + 1), amount), xbmc.LOGNOTICE)
 	if int(series['total']) > (int(params["page"]) + 1) * amount :
